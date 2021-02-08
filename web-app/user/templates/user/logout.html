@@ -1,0 +1,9 @@
+{%extends "user/base.html"%}
+{% block content %}
+    <h1 style = "text-align:center;">Log Out Successfully</h1>
+    <div class="row justify-content-center">
+    <a href = {% url 'login' %}>
+        <button class="btn btn-outline-info" type="submit">Login Again</button>
+    </a>
+    </div>
+{% endblock content %}

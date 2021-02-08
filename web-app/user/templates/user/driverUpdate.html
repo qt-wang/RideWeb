@@ -1,0 +1,19 @@
+{%extends "user/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1 style = "text-align:center;">Driver Update</h1>
+    <a href = {% url 'driverMain' %}>
+            <button class="btn btn-outline-info" type="submit">Back to Driver Main Page</button>
+        </a>
+    <div class= "content-section">
+        <form method = "POST">
+            {% csrf_token %}
+            <fieldset class = "form-group">
+                {{ du_form|crispy }}
+            </fieldset>    
+        <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">update</button>
+        </div>
+        </form>
+    </div>
+{% endblock content %}

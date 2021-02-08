@@ -1,0 +1,97 @@
+{%extends "user/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1 style = "text-align:center;">Driver Main</h1>
+    <a href = {% url 'userMain' %}>
+      <button class="btn btn-outline-info" type="submit">User Mode</button>
+    </a>
+    <a href = {% url 'driverUpdate' %}>
+      <button class="btn btn-outline-info" type="submit">Update Driver Info</button>
+    </a>
+    <a href = {% url 'searchUnconfirmedRide' %}>
+      <button class="btn btn-outline-info" type="submit">Search Uniconfirmed Rides</button>
+    </a>
+ 
+<style>
+.ride{width:1200px}
+.ride button{width:350px; height: 400px; margin: 20px;}
+.ride table{width: 300px; height: 370px;}
+</style>
+<h2>Driver Information</h2>
+<div>
+    <table class = "table">
+     <tbody>
+                  <tr>
+                    <td>Car Type</td>
+                    <td>{{ carType }}</td>
+                  </tr>
+                  <tr>
+                    <td>Plate Number</td>
+                    <td>{{plateNum}}</td>
+                  </tr>
+                  <tr>
+                    <td>Capacity</td>
+                    <td>{{ capacity }}</td>
+                  </tr>
+      </tbody>
+    </table>
+</div>
+<h2>Click rides to complete</h2>
+<div class = "ride">   
+    {%for ride in rides%} <!--may change color if confirmed -->
+    {%if ride.completed%}
+    {%else%}
+    <a href = "{%url 'complete_success' ride.id%}">
+    <button class="btn btn-primary" type="submit">
+       <article class="media content-section">
+          <div class="media-body">
+            <table border="1" frame="void" rules="rows">
+                <tbody>
+                  <tr>
+                    <td>Start Time</td>
+                    <td>{{ ride.startTime }}</td>
+                  </tr>
+                  <tr>
+                    <td>Area</td>
+                    <td>{{ride.area}}</td>
+                  </tr>
+                  <tr>
+                    <td>Destination</td>
+                    <td>{{ ride.destination }}</td>
+                  </tr>
+                  <tr>
+                    <td>Passenger Number</td>
+                    <td>{{ ride.passengerNum }}</td>
+                  </tr>
+                  <tr>
+                    <td>Confirmed</td>
+                    <td>{{ ride.confirmed }}</td>
+                  </tr>
+                  <tr>
+                    <td>Shareable</td>
+                    <td>{{ ride.shareable }}</td>
+                  </tr>
+                  {%if ride.confirmed%}
+                    <tr>
+                    <td>DriverName</td>
+                    <td>{{ ride.driverName }}</td>
+                    </tr>
+                    <tr>
+                    <td>CarType</td>
+                    <td>{{ ride.carType }}</td>
+                    </tr>
+                    <tr>
+                    <td>CarPlateNumber</td>
+                    <td>{{ ride.plateNum }}</td>
+                    </tr>
+                  {%endif%}
+                </tbody>
+              </table>
+          </div>
+        </article>
+    {%endif%}
+    </button>
+    </a>
+    {% endfor %}
+</div>
+{% endblock content %}

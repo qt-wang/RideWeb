@@ -1,0 +1,20 @@
+{%extends "user/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1 style = "text-align:center;">Search Shareable Ride</h1>
+    <a href = {% url 'userMain' %}>
+      <button class="btn btn-outline-info" type="submit">Back To User Main Page</button>
+    </a>
+    <div class= "content-section">
+        <form method = "POST">
+            {% csrf_token %}
+            <fieldset class = "form-group">
+                {{ search_share_form|crispy }}
+            </fieldset>    
+        <div class="form-group">
+ 
+                <button class="btn btn-outline-info" type="submit">show results</button>
+        </div>
+        </form>
+    </div>
+{% endblock content %}

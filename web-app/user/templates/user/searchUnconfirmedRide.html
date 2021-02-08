@@ -1,0 +1,19 @@
+{%extends "user/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1 style = "text-align:center;">Search Unconfirmed Ride</h1>
+    <a href = {% url 'driverMain' %}>
+        <button class="btn btn-outline-info" type="submit">Back To Driver Main Page</button>
+    </a>
+    <div class= "content-section">
+        <form method = "POST">
+            {% csrf_token %}
+            <fieldset class = "form-group">
+                {{ search_unconfirmed_form|crispy }}
+            </fieldset>    
+        <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">show results</button>
+        </div>
+        </form>
+    </div>
+{% endblock content %}

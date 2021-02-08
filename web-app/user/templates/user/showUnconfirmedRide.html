@@ -1,0 +1,58 @@
+{%extends "user/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1 style = "text-align:center;">Show Unconfirmed Rides</h1>
+    <a href = {% url 'driverUpdate' %}>
+      <button class="btn btn-outline-info" type="submit">Update Driver Info</button>
+    </a>
+    <a href = {% url 'driverMain' %}>
+      <button class="btn btn-outline-info" type="submit">Return To Driver Main Page</button>
+    </a>
+<style>
+.ride{width:1200px}
+.ride button{width:310px; height: 380px; float:left; margin: 20px;}
+.ride table{width: 300px; height: 370px;}
+</style>
+<div class = "ride"> 
+<h2>Click rides to confirm</h2>  
+    {%for ride in rides%}
+    <a href = "{% url 'confirm_success' ride.id %}">
+    <button {% if ride.confirmed %} class="btn btn-default" {% else %}  {% endif %} type="submit">
+       <article class="media content-section">
+          <div class="media-body">
+            <table class = "table">
+                <tbody>
+                  <tr>
+                    <td>Start Time</td>
+                    <td>{{ ride.startTime }}</td>
+                  </tr>
+                  <tr>
+                    <td>Area</td>
+                    <td>{{ride.area}}</td>
+                  </tr>
+                  <tr>
+                    <td>Destination</td>
+                    <td>{{ ride.destination }}</td>
+                  </tr>
+                  <tr>
+                    <td>Passenger Number</td>
+                    <td>{{ ride.passengerNum }}</td>
+                  </tr>
+                  <tr>
+                    <td>Confirmed</td>
+                    <td>{{ ride.confirmed }}</td>
+                  </tr>
+                  <tr>
+                    <td>Shareable</td>
+                    <td>{{ ride.shareable }}</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+          </div>
+        </article>
+    </button>
+    </a>
+    {% endfor %}
+</div>
+{% endblock content %}

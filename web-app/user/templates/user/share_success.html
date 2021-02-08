@@ -1,0 +1,9 @@
+{%extends "user/base.html"%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <h1> You have been successfully joined this ride, click to redirect to user main page.</h1>
+    <a href = "{% url 'userMain'%}">
+    <button class="btn btn-primary" type="submit">confirm</button>
+    </a>
+{% endblock content %}

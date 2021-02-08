@@ -1,0 +1,25 @@
+
+
+.userRides{
+    width: 100px;
+    height: 60px;
+    color:black;
+    border:3px orange double;
+    background-color:#FFFFFF;
+}
+
+userRides:hover{
+    color: blue;
+}
+
+
+
+
+body{
+    background: url("images/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}

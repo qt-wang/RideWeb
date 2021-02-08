@@ -1,0 +1,60 @@
+{%extends "user/base.html"%}
+{% load crispy_forms_tags %}
+{% block content %}
+    <h1 style = "text-align: center;">Show Shareable Rides</h1>
+    <a href = {% url 'userUpdate' %}>
+      <button class="btn btn-outline-info" type="submit">Update User Info</button>
+    </a>
+    <a href = {% url 'rideCreation' %}>
+      <button class="btn btn-outline-info" type="submit">Create A New Ride</button>
+    </a>
+    <a href = {% url 'userMain' %}>
+      <button class="btn btn-outline-info" type="submit">Return To User Main Page</button>
+    </a>
+<style>
+.ride{width:1200px}
+.ride button{width:310px; height: 380px; float:left; margin: 20px;}
+.ride table{width: 300px; height: 370px;}
+</style>
+<div class = "ride">   
+    {%for ride in rides%}
+    <a href = "{% url 'share_success' passengerNum ride.id %}">
+    <button {% if ride.confirmed %} class="btn btn-primary" {% else %}  {% endif %} type="submit">
+       <article class="media content-section">
+          <div class="media-body">
+            <table class = "table">
+                <tbody>
+                  <tr>
+                    <td>Start Time</td>
+                    <td>{{ ride.startTime }}</td>
+                  </tr>
+                  <tr>
+                    <td>Area</td>
+                    <td>{{ride.area}}</td>
+                  </tr>
+                  <tr>
+                    <td>Destination</td>
+                    <td>{{ ride.destination }}</td>
+                  </tr>
+                  <tr>
+                    <td>Passenger Number</td>
+                    <td>{{ ride.passengerNum }}</td>
+                  </tr>
+                  <tr>
+                    <td>Confirmed</td>
+                    <td>{{ ride.confirmed }}</td>
+                  </tr>
+                  <tr>
+                    <td>Shareable</td>
+                    <td>{{ ride.shareable }}</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+          </div>
+        </article>
+    </button>
+    </a>
+    {% endfor %}
+</div>
+{% endblock content %}

@@ -1,0 +1,41 @@
+
+ 
+1/29:
+When users are searching open rides to join, it is possible that the earliest acceptable start time may be earlier than the current time.
+
+
+1/29:
+When users are initiating new rides, it is possible that the start time may be earlier than the current time.
+
+1/30:
+When drivers are searching open rides to confirm, it is possible that the earliest acceptable start time may be earlier than the current time.
+
+1/31:
+We add datatimefield comparison in views such that, any entered start time can not be earlier than the current time
+
+
+2/3:
+We found that people who have not been logged in can bypass the login process by simply entering any urls to direct them to that page.
+
+2/3:
+We add decorators (@login_required) to appropriate views functions such that people will not be able to access these pages
+
+2/5
+People can access confirm success by entering confirm_success page's url, this action could has the following negtive effects：
+	1. drivers can cheat by modifying rides' driver to themselves
+	2. users belonging to a ride may experience mail bombing(a ride could be confimred continouesly)
+	3. driver can confirm any rides
+
+2/6
+When testing two drivers confirming a same ride, it is found that both received an success email, but only one of them 
+
+2/7
+We found that in user main page, the rides that the user confirmed as a driver will also be shown on that page, which is reasonable but sometimes confusing
+
+2/8:
+When driver confirm a ride, if the ride has a driverId that is not default value, we redirect that driver to driver main page and show an error message, 
+so that the driver know he failed to confirm this ride
+
+2/8:
+We add an exclude before rendering the usermain page, so that rides that the user confirmed as a driver will not be shown on that page
+
